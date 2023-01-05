@@ -1,0 +1,33 @@
+--Create a clothing store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, name TEXT, type_ TEXT, price INTEGER, units INTEGER, sold INTEGER);
+
+INSERT INTO store
+VALUES
+(1, "sneakers","footwear", 49.99, 10, 9),
+(2, "shirts","bottoms", 9.99, 50, 34),
+(3, "jeans","bottoms", 29.99, 50, 19),
+(4, "sunglasses", "accessory", 4.99, 100, 65),
+(5, "hats", "accessory", 14.99, 100, 89),
+(6, "beanies","accessory", 9.99, 100, 53),
+(7, "socks","socks", 12.99, 100, 91),
+(8, "pants","bottoms", 24.99, 50, 21),
+(9, "sweatshirts", "tops", 19.99, 40, 17),
+(10, "leggings", "bottoms", 8.99, 50, 38),
+(11, "boots","footwear", 65.99, 50, 10),
+(12, "slippers", "footwear", 15.99, 100, 78),
+(13, "bandanas", "accessory", 1.99, 100, 23),
+(14, "hoodies","tops", 19.99, 75, 44),
+(15, "skirts", "bottoms", 9.99, 50, 11);
+
+
+--Display the database ordered by price
+SELECT * fROM store ORDER BY price desc;
+
+
+--What is the average price of footwear?
+SELECT AVG(price) FROM store WHERE type_ = 'footwear';
+
+
+--List the top 5 most sold products
+SELECT name,sold FROM store WHERE sold >= 50 ORDER BY sold desc limit 5;
