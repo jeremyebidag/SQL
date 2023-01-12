@@ -1,0 +1,83 @@
+--Project Famous people
+
+--In this project, you’re going to make your own table with some small set of “famous people”, 
+then make more tables about things they do and join those to create nice human readable lists.
+
+
+CREATE TABLE actors 
+    (id INTEGER PRIMARY KEY, fn TEXT, ln TEXT, dob TEXT);
+    
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Brad", "Pitt", "1963-12-18");
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Angelina", "Jolie", "1975-6-4");
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Channing", "Tatum", "1980-4-26");
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Jenna", "Dewan", "1980-12-3");
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Mila", "Kunis", "1983-8-14");
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Ashton", "Kutcher", "1978-2-7");
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Will", "Smith", "1968-9-25");
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Keanu", "Reeves", "1964-9-2");
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Scarlett", "Johansson", "1984-11-22");
+INSERT INTO actors (fn, ln, dob)
+    VALUES ("Natalie", "Portman", "1981-6-9");
+    
+
+CREATE TABLE hobbies
+    (id INTEGER PRIMARY KEY, actor_id INTEGER, hobby TEXT);
+    
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (1, "playing guitar");
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (2, "people watch");
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (3, "working out");
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (4, "dancing");
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (5, "playing video games");
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (6, "listening music");
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (7, "fencing");
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (8, "surfing");
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (9, "singing");
+INSERT INTO hobbies (actor_id, hobby)
+    VALUES (10, "reading");
+
+
+CREATE TABLE married
+    (id INTEGER PRIMARY KEY, married1_id INTEGER, married2_id INTEGER);
+    
+INSERT INTO married (married1_id, married2_id)
+    VALUES (1,2);
+INSERT INTO  married (married1_id, married2_id)
+    VALUES (4,3);
+INSERT INTO married (married1_id, married2_id)
+    VALUES (5,6);
+    
+
+--What are the actors hobbies?
+
+SELECT a.fn AS "first name", a.ln AS "last name", h.hobby
+FROM actors a
+LEFT OUTER JOIN hobbies h
+ON a.id = h.actor_id;
+
+
+--Which actors are married to each other?
+
+SELECT a.fn AS "first name", a.ln AS "last name", b.fn AS "first name", b.ln AS "last name"
+FROM married m
+JOIN actors a
+ON m.married1_id = a.id
+JOIN actors b
+On m.married2_id = b.id
